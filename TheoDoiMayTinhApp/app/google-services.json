@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "502223671501",
+    "firebase_url": "https://fashionapp-49789-default-rtdb.firebaseio.com",
+    "project_id": "fashionapp-49789",
+    "storage_bucket": "fashionapp-49789.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502223671501:android:ef19eefc47e4d82a15d984",
+        "android_client_info": {
+          "package_name": "com.hoa.fashionapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502223671501-bvd1clj9hajbb4ep1nr0addbutv2rt0o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIvxks9LzHYk2X-s28T1a0lhOaQvzh6rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502223671501-bvd1clj9hajbb4ep1nr0addbutv2rt0o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502223671501:android:edd22094cdb93a7815d984",
+        "android_client_info": {
+          "package_name": "com.tondz.theodoimaytinhapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502223671501-bvd1clj9hajbb4ep1nr0addbutv2rt0o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIvxks9LzHYk2X-s28T1a0lhOaQvzh6rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502223671501-bvd1clj9hajbb4ep1nr0addbutv2rt0o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
