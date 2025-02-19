@@ -90,7 +90,7 @@ def detect_cellphones(bucket, db, id):
         current_time = time.time()
         if detected and (current_time - last_execution_time >= EXECUTION_DELAY):
             last_execution_time = current_time
-            threading.Thread(target=speak).start()
+            # threading.Thread(target=speak).start()
             threading.Thread(target=send_image, args=(frame, bucket, db, id)).start()
 
         cv2.imshow("Camera", frame)
