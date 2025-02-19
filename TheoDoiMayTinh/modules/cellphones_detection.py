@@ -5,6 +5,8 @@ import pygame
 import threading
 import uuid
 import time
+from datetime import datetime
+
 
 # Initialize pygame for audio playback
 pygame.init()
@@ -18,11 +20,13 @@ executor = ThreadPoolExecutor(max_workers=1)
 last_execution_time = 0
 EXECUTION_DELAY = 10  # 10 seconds
 
+
 def speak():
     pygame.mixer.music.load("alarm/khong_su_dung_dien_thoai.mp3")
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(20)
+
 
 def send_image(image, bucket, db, id):
     file_path = "images/cellphone.png"
@@ -37,10 +41,15 @@ def send_image(image, bucket, db, id):
     blob.upload_from_filename(file_path)
     blob.make_public()
     file_url = blob.public_url
-    db.reference(id).child("cellphone").set(file_url)
+    current_time = datetime.now()
+    formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+    data = {"time": formatted_time, "url": file_url}
+    db.reference(id).child("cellphone").set(data)
+
 
 def predict_async(frame):
     return model.predict(frame, verbose=False)
+
 
 def detect_cellphones(bucket, db, id):
     global last_execution_time
@@ -77,16 +86,14 @@ def detect_cellphones(bucket, db, id):
                         2,
                     )
                     detected = True
-        
+
         current_time = time.time()
         if detected and (current_time - last_execution_time >= EXECUTION_DELAY):
             last_execution_time = current_time
             threading.Thread(target=speak).start()
-            threading.Thread(
-                target=send_image, args=(frame, bucket, db, id)
-            ).start()
+            threading.Thread(target=send_image, args=(frame, bucket, db, id)).start()
 
-        cv2.imshow("YOLOv8 Real-time Detection", frame)
+        cv2.imshow("Camera", frame)
 
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
