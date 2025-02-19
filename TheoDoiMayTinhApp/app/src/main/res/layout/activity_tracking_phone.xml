@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".views.TrackingPhoneActivity">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,11 +17,13 @@
         android:text="Theo dõi điện thoại"
         android:textColor="@color/white"
         android:textSize="20sp" />
+
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/preView"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:scaleType="fitCenter" />
+
     <TextView
         android:id="@+id/tvDateTime"
         android:layout_width="match_parent"
@@ -28,5 +31,14 @@
         android:gravity="center"
         android:padding="10dp"
         android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvSoLan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="#F44336"
         android:textSize="20sp" />
 </LinearLayout>

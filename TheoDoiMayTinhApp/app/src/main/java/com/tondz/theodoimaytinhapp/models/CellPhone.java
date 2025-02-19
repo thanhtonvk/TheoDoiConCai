@@ -1,14 +1,17 @@
 package com.tondz.theodoimaytinhapp.models;
 
 public class CellPhone {
-    private String time,url;
+    private String id, time, url;
 
     public CellPhone() {
     }
 
-    public CellPhone(String time, String url) {
-        this.time = time;
-        this.url = url;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTime() {
@@ -24,6 +27,12 @@ public class CellPhone {
     }
 
     public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public CellPhone(String id, String time, String url) {
+        this.id = id;
+        this.time = time;
         this.url = url;
     }
 }
