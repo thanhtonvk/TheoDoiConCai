@@ -11,6 +11,7 @@ def get_chrome_history():
     org_history = os.path.expanduser(
         r"~\AppData\Local\Google\Chrome\User Data\Default\History"
     )
+    os.makedirs('db_history',exist_ok=True)
     history_db = "db_history/temp_history.db"
     shutil.copy2(org_history, history_db)
 

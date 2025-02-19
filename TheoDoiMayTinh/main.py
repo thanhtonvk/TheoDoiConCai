@@ -8,6 +8,7 @@ from modules.get_id_device import get_id
 import firebase_admin
 from firebase_admin import credentials, storage, db
 import uuid
+from modules.cellphones_detection import detect_cellphones
 # Khởi tạo Firebase
 
 cred = credentials.Certificate("key.json")
@@ -84,11 +85,13 @@ def speak_message():
             status_label.config(text=f"Error: {e}")
         time.sleep(3)  # 1 giây
 
+def tracking():
+    detect_cellphones(bucket,db,id)
 
 # Khởi động các luồng
 threading.Thread(target=push_capture_screen, daemon=True).start()
 threading.Thread(target=push_chrome_history, daemon=True).start()
 threading.Thread(target=speak_message, daemon=True).start()
-
+threading.Thread(target=tracking, daemon=True).start()
 # Khởi động giao diện
 root.mainloop()
