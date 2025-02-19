@@ -43,8 +43,10 @@ def send_image(image, bucket, db, id):
     file_url = blob.public_url
     current_time = datetime.now()
     formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
-    data = {"time": formatted_time, "url": file_url}
-    db.reference(id).child("cellphone").set(data)
+    format_date = current_time.strftime("%Y-%m-%d")
+    format_time = current_time.strftime("%H%M%S")
+    data = {"time": formatted_time, "url": file_url, "id":format_time}
+    db.reference(id).child("cellphone").child(format_date).child(format_time).set(data)
 
 
 def predict_async(frame):
@@ -52,17 +54,43 @@ def predict_async(frame):
 
 
 def detect_cellphones(bucket, db, id):
+    
+    # nếu dùng camera ip thì để camera_source là đường dẫn, còn muốn dùng camera máy tính thì để là 0
+    camera_source = "rtsp://admin:180683xo@192.168.1.2:554/onvif1"
+    camera_source = 0
+    
+    if str(camera_source).isdigit():
+        cap = cv2.VideoCapture(camera_source)
+    else:
+        import vlc
+        instance = vlc.Instance()
+        media = instance.media_new(camera_source)
+        media_player = instance.media_player_new()
+        media_player.set_media(media)
+        media_player.play()
+        snapshot_path = "snapshot1.png"
+        media_player.video_take_snapshot(0, snapshot_path, 0, 0)
+        time.sleep(2)
+        
+        
     global last_execution_time
-    cap = cv2.VideoCapture(0)
-    count = 0
     results_future = None
     results = []
 
-    while cap.isOpened():
+    while True:
+        
+        
         success, frame = cap.read()
-        count += 1
-        if not success:
-            break
+        if str(camera_source).isdigit():
+            success, frame = cap.read()
+            if not success:
+                break
+        else:
+            media_player.video_take_snapshot(0, snapshot_path, 0, 0)
+            frame = cv2.imread(snapshot_path)
+            if frame is None:
+                break
+
 
         if results_future is not None:
             results = results_future.result()
