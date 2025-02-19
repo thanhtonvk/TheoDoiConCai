@@ -38,6 +38,13 @@
         android:drawableLeft="@drawable/baseline_cloud_download_24"
         android:text="Xem lịch sử tải xuống" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCellPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/baseline_123_24"
+        android:text="Theo dõi sử dụng điện thoại" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

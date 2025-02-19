@@ -1,5 +1,6 @@
 package com.tondz.theodoimaytinhapp.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.tondz.theodoimaytinhapp.adapters.LichSuAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TheoDoiActivity extends AppCompatActivity {
     ActivityTheoDoiBinding binding;
@@ -53,12 +55,16 @@ public class TheoDoiActivity extends AppCompatActivity {
             binding.rvHistory.setAdapter(downloadAdapter);
             onLoadDownload();
         });
+
         binding.btnSend.setOnClickListener(v -> {
-            String value = binding.edtMessage.getText().toString().strip();
+            String value = Objects.requireNonNull(binding.edtMessage.getText()).toString().strip();
             if (!value.isEmpty()) {
                 reference.child(common.id).child("message").setValue(value);
                 binding.edtMessage.setText("");
             }
+        });
+        binding.btnCellPhone.setOnClickListener(view -> {
+            startActivity(new Intent(this, TrackingPhoneActivity.class));
         });
     }
 

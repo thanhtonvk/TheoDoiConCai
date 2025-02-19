@@ -15,6 +15,9 @@
         android:theme="@style/Theme.TheoDoiMayTinhApp"
         tools:targetApi="31">
         <activity
+            android:name=".views.TrackingPhoneActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.TheoDoiActivity"
             android:exported="false" />
         <activity
