@@ -58,6 +58,7 @@ def detect_cellphones(bucket, db, id):
     # nếu dùng camera ip thì để camera_source là đường dẫn, còn muốn dùng camera máy tính thì để là 0
     camera_source = "rtsp://admin:180683xo@192.168.1.2:554/onvif1"
     camera_source = 0
+    cap = None
     
     if str(camera_source).isdigit():
         cap = cv2.VideoCapture(camera_source)
@@ -78,9 +79,6 @@ def detect_cellphones(bucket, db, id):
     results = []
 
     while True:
-        
-        
-        success, frame = cap.read()
         if str(camera_source).isdigit():
             success, frame = cap.read()
             if not success:
@@ -125,7 +123,7 @@ def detect_cellphones(bucket, db, id):
 
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
-
-    cap.release()
+    if cap is not None:
+        cap.release()
     cv2.destroyAllWindows()
     executor.shutdown()
