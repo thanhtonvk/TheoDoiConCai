@@ -50,7 +50,7 @@ def send_image(image, bucket, db, id):
 
 
 def predict_async(frame):
-    return model.predict(frame, verbose=False)
+    return model.predict(frame, verbose=False, conf = 0.3)
 
 
 def detect_cellphones(bucket, db, id):
